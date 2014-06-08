@@ -1,0 +1,151 @@
+* {
+	
+}
+
+body {
+	min-width: 900px;
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	vertical-align: center;
+	width: 600px;
+	height: 60px;
+	padding: 20px 0;
+}
+
+h3 {
+	font-size: 25px;
+	text-align: center;
+	vertical-align: center;
+	width: 600px;
+	height: 50px;
+}
+
+h2 {
+	font-size: 20px;
+	border-radius: 10px;
+	margin: 10px 10px;
+	padding: 5px 5px;
+}
+
+header > div {
+	height: 150px;
+	display: inline-block;
+	border: 5px solid #66FFFF;
+	border-radius: 20px;
+	padding: 5px;
+}
+
+#image {
+	float: right;
+}
+
+#diamondDraw {
+	width: 200px;
+	float: right;
+}
+
+main {
+	clear: both;
+	border: 5px solid #66FFFF;
+	border-radius: 20px;
+	width: 840px;
+}
+
+header, #info {
+	width: 850px;
+}
+
+#info > div {
+	clear: both;
+	border-width: 5px;
+	border-radius: 20px;
+	display: inline-block;
+	border: 5px solid #66FFFF;
+	padding: 5px;
+	text-align: center;
+}
+
+main > div {
+	clear: both;
+	border-width: 5px;
+	border-radius: 20px;
+	display: inline-block;
+}
+
+main, header, #info {
+	margin: 20px auto;
+}
+
+#counter {
+	float: right;
+	width: 200px;
+}
+#start, #demo {
+	width: 100px;
+	margin-left: 20px;
+}
+
+#QandA {
+	min-height: 400px;
+	width: 740px;
+	float: left;
+}
+
+.question {
+	background: #66FFFF;
+}
+.answer {
+	margin-left: 20px;
+	background: #CC99FF;
+}
+.next {
+	background: #66FFFF;
+	float: right;
+	width: 150px;
+	text-align: center;
+}
+.right {
+	background: #00CC66;
+}
+.description {
+	background: #00CC66;
+	margin-left: 40px;
+	text-align: left;
+}
+.title {
+	background: #3399FF;
+	text-align: center;
+
+}
+
+#qNumbers {
+	min-height: 400px;
+	width: 100px;
+}
+
+.questionNumber, .questionWrong {
+    width: 50px;  /*Make height, width, and line-height match*/
+    height: 50px;
+    line-height: 50px;
+    border-radius: 25px; /*half of width*/
+    text-align: center;
+    margin: 10px auto;
+}
+
+.questionNumber {
+	background: #66FFFF;
+}
+
+.questionWrong {
+	background: #FF5050;
+}
+
+.smallDiamond {
+	width: 50px;
+	margin: 10px auto;
+	position: relative;
+	left: -10px;
+}
