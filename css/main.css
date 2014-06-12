@@ -110,6 +110,9 @@ main, header, #info {
 .right {
 	background: #00CC66;
 }
+.other {
+	background: #F5EBFF;
+}
 .description {
 	background: #00CC66;
 	margin-left: 40px;
@@ -144,8 +147,8 @@ main, header, #info {
 }
 
 .smallDiamond {
-	width: 50px;
+	background-image: url(../images/smallDiamond.jpeg);
+	width: 70px;
 	margin: 10px auto;
-	position: relative;
-	left: -10px;
+	border-radius: 0;
 }
