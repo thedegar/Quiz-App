@@ -113,6 +113,14 @@ $(document).ready(function() {
 	reset();
 });
 
+//Add functionality to more clearly identify buttons as a button when moused over
+$(document).on("mouseenter", "#start, .next", function() {
+	$(this).addClass("hover");
+});
+$(document).on("mouseleave", "#start, .next", function() {
+	$(this).removeClass("hover");
+});
+
 //Start/Reset button click handler
 $(document).on("click","#start",start);
 
