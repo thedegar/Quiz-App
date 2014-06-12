@@ -52,6 +52,7 @@ main {
 	border: 5px solid #66FFFF;
 	border-radius: 20px;
 	width: 840px;
+	min-height: 400px;
 }
 
 header, #info {
@@ -89,7 +90,6 @@ main, header, #info {
 }
 
 #QandA {
-	min-height: 400px;
 	width: 740px;
 	float: left;
 }
@@ -124,7 +124,6 @@ main, header, #info {
 }
 
 #qNumbers {
-	min-height: 400px;
 	width: 100px;
 }
 
