@@ -7,12 +7,9 @@
 //Global variables
 var counter = 0;  //to keep track of correct answers
 var qCounter = 0; //to keep track of which question you are on
-var started = false;
-var answers = [];
-for (var i=0;i<5;i++) {
-	answers[i] = "new";
-}
-var questions = [];
+var started = false; //to keep track of when the user has started the game
+var questions = []; //empty to fill with questions
+var next = false; //to keep track of when the next question button is out
 
 //Create logger function
 var log = function(log) {
@@ -23,13 +20,15 @@ var log = function(log) {
 var reset = function() {
 	if (started == false) {
 		$(".diamondDraw").hide();
-		$("#five").show();
+		$("#I5").show();
 	}
 	else {
 		$(".diamondDraw").hide();
-		$("#blank").show();
+		$("#I0").show();
 		counter=0;
 		qCounter=0;
+		$(".next").text("Next Question");
+		next=false;
 	}
 };
 
@@ -41,15 +40,14 @@ var start = function() {
 	//Change button text from Start to Reset
 	$("#start").text("Reset");
 	//Clear the drawing
-	$(".diamondDraw").hide();
-	$("#blank").show();
+	diamond();
 	//Set the correct answer counter to zero
 	$("#counter").text(counter + " of " + qCounter + " correct answers");
 	//Set all History circles
 	$("#qNumbers div").removeClass("questionWrong").removeClass("smallDiamond");
 	//Start question #1
-	qCounter = qCounter + 1;
-	defineQandA(Q1); 
+	qCounter++;
+	defineQandA(questions[qCounter-1]); 
 };
 
 //Function to set the question and answer text
@@ -64,6 +62,27 @@ var defineQandA = function(nextQuestion) {
 	$("#interface .answer").removeClass("right").removeClass("other").removeClass("wrong"); //clear right from all answers
 	$(".next").hide();
 };
+
+//Function to take the user guess and compare with answer
+var takeAnswer = function(answer,guess) {
+	var string = "#Q" + qCounter;
+	if (guess == answer) {
+		$(string).toggleClass("smallDiamond");
+		counter++;
+	}
+	else {
+		$(string).toggleClass("questionWrong");
+	}
+	$("#counter").text(counter + " of " + qCounter + " correct answers");
+	diamond();
+};
+
+//Function to show the correct diamond based on correct answer count
+var diamond = function() {
+	var string = "#I" + counter;
+	$(".diamondDraw").hide();
+	$(string).show();
+}
 
 //Create questions and answers
 Question = function(question,answer,description,wrong1,wrong2,wrong3) {
@@ -88,18 +107,34 @@ var questions = [Q1,Q2,Q3,Q4,Q5];
 //---------------------------------
 $(document).ready(function() {
 	reset();
+});
 
-	//Start/Reset button click handler
-	$("#start").on("click",start);
+//Start/Reset button click handler
+$(document).on("click","#start",start);
 
-	//Demo button click handler
-	$("#demo").on("click", function() {
-		log("demo clicked");
-	});
+//Answer selection button click handler
+$(document).on("click",".answer",function() {
+	if (started == true && next == false) {
+		var userChoice = $(this).text();
+		var rightChoice = questions[qCounter-1].answer;
+		takeAnswer(rightChoice,userChoice);
+	}
 
-	//Next question button click handler
-	$(".next").on("click", function() {
-		log("next clicked");
-	});
+	//Handle the last question differently
+	if (qCounter >= 5) {
+		$(".next").show().text("All Done");
+	}
+	else {
+		$(".next").show();
+	}
+	next = true;
+});
 
+//Answer selection button click handler
+$(document).on("click",".next",function() {
+	if (started == true && $(this).text() != "All Done") {
+		qCounter++;
+		defineQandA(questions[qCounter-1]);
+	}
+	next = false;
 });
