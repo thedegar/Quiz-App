@@ -118,7 +118,7 @@ main, header, #info {
 	margin-left: 40px;
 	text-align: left;
 }
-.title {
+.title, .hover {
 	background: #3399FF;
 	text-align: center;
 }
