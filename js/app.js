@@ -58,7 +58,7 @@ var defineQandA = function(nextQuestion) {
 	$("#interface #A2").text(nextQuestion.wrong2); //set answer 2 to wrong answer text
 	$("#interface #A3").text(nextQuestion.answer); //set answer 3 to answer text
 	$("#interface #A4").text(nextQuestion.wrong3); //set answer 4 to wrong answer text
-	$("#interface .description").hide(); //hide the description
+	$("#interface .description").remove(); //hide the description
 	$("#interface .answer").removeClass("right").removeClass("other").removeClass("wrong"); //clear right from all answers
 	$(".next").hide();
 };
@@ -66,15 +66,19 @@ var defineQandA = function(nextQuestion) {
 //Function to take the user guess and compare with answer
 var takeAnswer = function(answer,guess) {
 	var string = "#Q" + qCounter;
+	var value;
 	if (guess == answer) {
 		$(string).toggleClass("smallDiamond");
 		counter++;
+		value = "right";
 	}
 	else {
 		$(string).toggleClass("questionWrong");
+		value = "wrong";
 	}
 	$("#counter").text(counter + " of " + qCounter + " correct answers");
 	diamond();
+	return value;
 };
 
 //Function to show the correct diamond based on correct answer count
@@ -117,7 +121,17 @@ $(document).on("click",".answer",function() {
 	if (started == true && next == false) {
 		var userChoice = $(this).text();
 		var rightChoice = questions[qCounter-1].answer;
-		takeAnswer(rightChoice,userChoice);
+		value = takeAnswer(rightChoice,userChoice);
+		//Change color of correct choice and add description
+		if (value == "right") {
+			$(this).addClass("right").after('<h2 class="description right"></h2>');
+			$(".description").text(questions[qCounter-1].description).show();
+		}
+		//Change color of wrong choice and add description
+		else {
+			$(this).addClass("wrong").after('<h2 class="description wrong"></h2>');
+			$(".description").text("That is incorrect.").show();
+		}
 	}
 
 	//Handle the last question differently
