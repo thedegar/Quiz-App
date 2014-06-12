@@ -42,7 +42,7 @@ header > div {
 	float: right;
 }
 
-#diamondDraw {
+.diamondDraw {
 	width: 200px;
 	float: right;
 }
