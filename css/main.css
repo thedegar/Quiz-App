@@ -141,7 +141,7 @@ main, header, #info {
 	background: #66FFFF;
 }
 
-.questionWrong {
+.questionWrong, .wrong {
 	background: #FF5050;
 }
 
